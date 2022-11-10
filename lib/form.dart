@@ -45,10 +45,7 @@ class _MyFormPageState extends State<MyFormPage> {
               title: const Text('Form'),
               onTap: () {
                 // Route menu ke halaman form
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyFormPage()),
-                );
+                Navigator.pop(context);
               },
             ),
           ],
@@ -68,7 +65,7 @@ class _MyFormPageState extends State<MyFormPage> {
                       hintText: "Contoh: Pak Dengklek",
                       labelText: "Nama Lengkap",
                       // Menambahkan icon agar lebih intuitif
-                      icon: const Icon(Icons.people),
+                      icon: const Icon(Icons.person_outline),
                       // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -100,12 +97,13 @@ class _MyFormPageState extends State<MyFormPage> {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(5),
+                    color: const Color.fromRGBO(217, 238, 242, 1)
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const ListTile(
-                        leading:  Icon(Icons.school),
+                        leading:  Icon(Icons.school_outlined),
                         title: Text("Jenjang"),
                       ),
                       CheckboxListTile(
@@ -160,7 +158,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.co_present),
+                  leading: const Icon(Icons.cake_outlined),
                   title: Row(
                     children: [
                       Text('Umur: ${umur.round()}'),
@@ -179,7 +177,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.class_),
+                  leading: const Icon(Icons.class_outlined),
                   title: const Text(
                     'Kelas PBP',
                   ),
@@ -207,7 +205,7 @@ class _MyFormPageState extends State<MyFormPage> {
                       _nilaiSwitch = value;
                     });
                   },
-                  secondary: const Icon(Icons.run_circle_outlined),
+                  secondary: const Icon(Icons.supervised_user_circle_outlined),
                 ),
                 TextButton(
                   style: ButtonStyle(
@@ -228,27 +226,31 @@ class _MyFormPageState extends State<MyFormPage> {
                                 padding: const EdgeInsets.only(top: 20, bottom: 20),
                                 shrinkWrap: true,
                                 children: <Widget>[
-                                  Center(child: const Text('Informasi Data')),
-                                  SizedBox(height: 20),
+                                  const Center(child: Text('Informasi Data')),
+                                  const SizedBox(height: 20),
                                   // Munculkan informasi yang didapat dari form
-                                  Text('Judul: $_namaLengkap'),
-                                  if (jenjangSarjana)...[
-                                    Text('Jenjang Pendidikan: Sarjana'),
-                                  ] else if (jenjangDiploma)...[
-                                    Text('Jenjang Pendidikan: Diploma'),
-                                  ] else if (jenjangMagister)...[
-                                    Text('Jenjang Pendidikan: Magister'),
-                                  ] else if (jenjangDoktor)...[
-                                    Text('Jenjang Pendidikan: Doktor'),
-                                  ],
-                                  Text('Umur: $umur'),
-                                  Text('Kelas: $kelasPBP'),
-                                  Text('Practice Mode: $_nilaiSwitch'),
+                                  Column(
+                                    children: [
+                                      Text('Judul: $_namaLengkap'),
+                                      if (jenjangSarjana)...[
+                                        const Text('Jenjang Pendidikan: Sarjana'),
+                                      ] else if (jenjangDiploma)...[
+                                        const Text('Jenjang Pendidikan: Diploma'),
+                                      ] else if (jenjangMagister)...[
+                                        const Text('Jenjang Pendidikan: Magister'),
+                                      ] else if (jenjangDoktor)...[
+                                        const Text('Jenjang Pendidikan: Doktor'),
+                                      ],
+                                      Text('Umur: $umur'),
+                                      Text('Kelas: $kelasPBP'),
+                                      (_nilaiSwitch) ? const Text('Practice Mode: ✔') : const Text('Practice Mode: ❌'),
+                                    ],
+                                  ),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Kembali'),
+                                    child: const Text('Kembali'),
                                   ), 
                                 ],
                               ),
